@@ -2,7 +2,8 @@
 
 This project includes four **server - client** examples using **`gRPC`**. It implements the **same** functionality as the original **`Python`** code by rewriting it in **`Go`**.
 
-*※ Related Course: [SWCON492] Full-Stack Service Networking*
+*※ Related Course: [SWCON492] Full-Stack Service Networking* <br>
+*※ **Error handling** added to the original source code*
 
 ### Original Source Code Runtime Environment
 : <img src="https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=Python&logoColor=white" width=17%>&nbsp;
