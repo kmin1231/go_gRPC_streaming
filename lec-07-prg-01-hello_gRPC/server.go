@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"time"
 
 	// imports gRPC module
 	"google.golang.org/grpc"
@@ -22,9 +23,16 @@ type server struct {
 }
 
 func (s *server) MyFunction(ctx context.Context, in *pb.MyNumber) (*pb.MyNumber, error) {
-	// handles only a single request from the client
-	// the part corresponding to 'ThreadPoolExecutor' in Python is omitted
-	result := hello_gRPC.MyFunc(int(in.Value))
+	var result int
+
+	// 'future.ThreadPoolExecutor' in Python -> 'goroutine' in Go
+	go func() {
+		result = hello_gRPC.MyFunc(int(in.Value))
+	}()
+
+	// waits for input
+	time.Sleep(200 * time.Millisecond)
+
 	return &pb.MyNumber{Value: int32(result)}, nil
 }
 
